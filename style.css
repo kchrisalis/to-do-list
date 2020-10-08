@@ -1,0 +1,76 @@
+body {
+    margin: 30px;
+}
+
+textarea {
+    width: 450px;
+    height: 200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding: 10px;
+    outline: none;
+    resize: vertical;
+}
+
+#mainBlock {
+    border: 2px solid black;
+    background-color: rgb(86, 138, 138);
+    text-align: left;
+    width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    height: fit-content;
+}
+
+.taskCheck {
+    border: 1px solid black;
+    width: 450px;
+    padding: 10px;
+    display: block;
+    background: rgb(255, 255, 255);
+}
+
+.taskMenu {
+    background-color: violet;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.taskMenu div {
+    text-align: center;
+    background: lightgrey;
+    border: 1px solid black;
+    padding: 10px 0;
+    width: 300px;
+}
+
+.taskMenu div:hover {
+    background-color: rgb(155, 172, 173);
+}
+
+.taskMenu div.active {
+    background-color:  rgb(155, 185, 185);
+}
+
+h1 {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
+
+label {
+    font-weight: bolder;
+}
+
+select {
+    outline: none;
+}
+
+#taskForm {
+    display: block;
+}
+
+#allTasks {
+    display: none;
+}

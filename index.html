@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Title</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="mainBlock">
+    
+    <!-- Task Nav Bar -->
+    <h1>Get Stuff Done</h1>
+    <div class="taskMenu">
+      <div id="addTask" class="active">Add Task</div>
+      <div id="taskList">Task List</div>
+    </div>
+
+    <!-- Add Task Form -->
+    <div id="taskForm">
+      <p>Task Title: <input type="text" id='taskTitle'></p>
+      <p>Task Difficulty: <select id="difficulty">
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+        </select><br></p>
+
+      <textarea id='taskStuff' placeholder="Enter details of your task here"></textarea><br>
+      <button id="listAdd">Add To List</button>
+    </div>
+
+    <!-- Task List -->
+    <div id='allTasks'>
+      <h2>All Tasks</h1>
+        <p>Filter: <select id="difficulty">
+            <option>All</option>
+            <option>Ongoing</option>
+            <option>Finished</option>
+          </select><br></p>
+        <div id='showtask'></div>
+    </div>
+  </div>
+
+  <!-- Load JavaScript -->
+  <script src="main.js"></script>
+</body>
+
+</html>
