@@ -34,7 +34,7 @@ function clickHandler() {
     els.tLBtn.classList.remove("active");
 
   } else if (event.target.id == "taskList") {
-    // display div allTracks
+    // display div allTasks
     els.taskform.style.display = "none";
     els.tasklist.style.display = "block";
     els.tFBtn.classList.remove("active");
@@ -57,14 +57,15 @@ function clickHandler() {
     els.taskBox.style.display = "block";
 
   } else if (event.target.value == "Finished") {
-    for (let i = 0; i < toDo.length; i++) {}
-    els.taskBox.style.display = "none";
+    // els.taskBox.style.display = "none";
+
   } else if (event.target.value == "Ongoing") {
-    els.taskBox.style.display = "none";
+    // els.taskBox.style.display = "none";
   }
 }
 
 // Helper Functions
+// Push information into an array
 function arraytoDo() {
   toDo.push({
     title: document.getElementById("taskTitle").value,
@@ -75,6 +76,7 @@ function arraytoDo() {
   localStorage.setItem("toDo", JSON.stringify(toDo));
 }
 
+// Create Task Boxes
 function taskAdd(doStuff) {
   let ATT = {
     divEl: document.createElement('div'),
@@ -83,7 +85,7 @@ function taskAdd(doStuff) {
     pDifficulty: document.createElement("p"),
     pEl: document.createElement("p")
   }
-  
+
   ATT.divEl.classList.add('taskCheck');
 
   ATT.check.type = "checkbox";
