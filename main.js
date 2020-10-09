@@ -83,6 +83,7 @@ function taskAdd(doStuff) {
     pDifficulty: document.createElement("p"),
     pEl: document.createElement("p")
   }
+  
   ATT.divEl.classList.add('taskCheck');
 
   ATT.check.type = "checkbox";
