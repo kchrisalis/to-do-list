@@ -25,7 +25,7 @@ function initTasks() {
 document.getElementById("mainBlock").addEventListener("click", clickHandler);
 
 // Main Function
-function clickHandler() {
+function clickHandler(event) {
   if (event.target.id == "addTask") {
     // display div taskForm
     els.taskform.style.display = "block";
@@ -54,15 +54,20 @@ function clickHandler() {
 
     // filtering tasks (use for loop to check divs in toDoBoxes array, use if statement to see if checkbox is checked?)
   } else if (event.target.value == "All") {
-    els.taskBox.style.display = "block";
 
   } else if (event.target.value == "Finished") {
-    // els.taskBox.style.display = "none";
-    // display all checked boxes and hide all unchecked boxes
+    for (let i = 0; i < toDo.length; i++) {
+      if (toDo[i].checked == true) {
+      } else {
+      }
+    }
 
   } else if (event.target.value == "Ongoing") {
-    // els.taskBox.style.display = "none";
-    // display all unchecked boxes and hide all checked boxes
+    for (let i = 0; i < toDo.length; i++) {
+      if (toDo[i].checked == false){
+      } else {
+      }
+    }
   }
 }
 
@@ -72,7 +77,8 @@ function arraytoDo() {
   toDo.push({
     title: document.getElementById("taskTitle").value,
     difficulty: document.getElementById("difficulty").value,
-    details: document.getElementById('taskStuff').value
+    details: document.getElementById('taskStuff').value,
+    checked: false
   })
 
   localStorage.setItem("toDo", JSON.stringify(toDo));
@@ -91,6 +97,13 @@ function taskAdd(doStuff) {
   ATT.divEl.classList.add('taskCheck');
 
   ATT.check.type = "checkbox";
+  ATT.check.checked = (doStuff.checked);
+  ATT.check.addEventListener("click", () => {
+    console.log(doStuff.checked);
+    doStuff.checked = !doStuff.checked;
+    console.log(doStuff.checked);
+  });
+
   ATT.divEl.append(ATT.check);
 
   ATT.label.innerHTML = `${doStuff.title}`;
