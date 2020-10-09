@@ -1,7 +1,16 @@
 // TITLE
+// Global Var
+let els = {
+  taskform: document.getElementById("taskForm"),
+  tasklist: document.getElementById("allTasks"),
+  tFBtn: document.getElementById("addTask"),
+  tLBtn: document.getElementById("taskList"),
+  taskBox: document.getElementById('showtask')
+}
 
 // Task Array
 let toDo = initTasks();
+let toDoBoxes = [];
 
 function initTasks() {
   let storedTasksStr = localStorage.getItem("toDo");
@@ -15,26 +24,26 @@ function initTasks() {
 // Event Listeners
 document.getElementById("mainBlock").addEventListener("click", clickHandler);
 
+// Main Function
 function clickHandler() {
-  let taskform = document.getElementById("taskForm");
-  let tasklist = document.getElementById("allTasks");
-  let tFBtn = document.getElementById("addTask");
-  let tLBtn = document.getElementById("taskList");
-
   if (event.target.id == "addTask") {
     // display div taskForm
-    taskform.style.display = "block";
-    tasklist.style.display = "none";
-    tFBtn.classList.add("active");
-    tLBtn.classList.remove("active");
-
+    els.taskform.style.display = "block";
+    els.tasklist.style.display = "none";
+    els.tFBtn.classList.add("active");
+    els.tLBtn.classList.remove("active");
 
   } else if (event.target.id == "taskList") {
     // display div allTracks
-    taskform.style.display = "none";
-    tasklist.style.display = "block";
-    tFBtn.classList.remove("active");
-    tLBtn.classList.add("active");
+    els.taskform.style.display = "none";
+    els.tasklist.style.display = "block";
+    els.tFBtn.classList.remove("active");
+    els.tLBtn.classList.add("active");
+
+    els.taskBox.innerHTML = "";
+    for (let i = 0; i < toDo.length; i++) {
+      els.taskBox.append(taskAdd(toDo[i]));
+    }
 
   } else if (event.target.id == "listAdd") {
     // add task to toDo list
@@ -42,9 +51,18 @@ function clickHandler() {
     document.getElementById("taskTitle").value = "";
     document.getElementById("difficulty").value = ""
     document.getElementById('taskStuff').value = "";
+
+    // Filter Functions
+  } else if (event.target.value == "All") {
+    els.taskBox.style.display = "block";
+
+  } else if (event.target.value == "Finished") {
+    for (let i = 0; i < toDo.length; i++) {}
+    els.taskBox.style.display = "none";
+  } else if (event.target.value == "Ongoing") {
+    els.taskBox.style.display = "none";
   }
 }
-
 
 // Helper Functions
 function arraytoDo() {
@@ -55,34 +73,29 @@ function arraytoDo() {
   })
 
   localStorage.setItem("toDo", JSON.stringify(toDo));
-
-  let taskBox = document.getElementById('showtask');
-
-  taskBox.innerHTML = ""
-  for (let i = 0; i < toDo.length; i++) {
-    taskBox.append(taskAdd(toDo[i]));
-  }
 }
 
 function taskAdd(doStuff) {
-  let divEl = document.createElement('div');
-  divEl.classList.add('taskCheck');
+  let ATT = {
+    divEl: document.createElement('div'),
+    check: document.createElement("input"),
+    label: document.createElement("label"),
+    pDifficulty: document.createElement("p"),
+    pEl: document.createElement("p")
+  }
+  ATT.divEl.classList.add('taskCheck');
 
-  let check = document.createElement("input");
-  check.type = "checkbox";
-  divEl.append(check);
+  ATT.check.type = "checkbox";
+  ATT.divEl.append(ATT.check);
 
-  let label = document.createElement("label");
-  label.innerHTML = `${doStuff.title}`;
-  divEl.append(label);
+  ATT.label.innerHTML = `${doStuff.title}`;
+  ATT.divEl.append(ATT.label);
 
-  let pDifficulty = document.createElement("p")
-  pDifficulty.innerHTML = `Difficulty: ${doStuff.difficulty}`
-  divEl.append(pDifficulty);
+  ATT.pDifficulty.innerHTML = `Difficulty: ${doStuff.difficulty}`
+  ATT.divEl.append(ATT.pDifficulty);
 
-  let pEl = document.createElement("p");
-  pEl.innerHTML = `${doStuff.details}`;
-  divEl.append(pEl);
+  ATT.pEl.innerHTML = `${doStuff.details}`;
+  ATT.divEl.append(ATT.pEl);
 
-  return divEl;
+  return ATT.divEl;
 }
