@@ -52,15 +52,17 @@ function clickHandler() {
     document.getElementById("difficulty").value = ""
     document.getElementById('taskStuff').value = "";
 
-    // Filter Functions
+    // filtering tasks (use for loop to check divs in toDoBoxes array, use if statement to see if checkbox is checked?)
   } else if (event.target.value == "All") {
     els.taskBox.style.display = "block";
 
   } else if (event.target.value == "Finished") {
     // els.taskBox.style.display = "none";
+    // display all checked boxes and hide all unchecked boxes
 
   } else if (event.target.value == "Ongoing") {
     // els.taskBox.style.display = "none";
+    // display all unchecked boxes and hide all checked boxes
   }
 }
 
