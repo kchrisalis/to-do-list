@@ -1,11 +1,13 @@
-// TITLE
+// Get Stuff Done
+
 // Global Var
 let els = {
   taskform: document.getElementById("taskForm"),
   tasklist: document.getElementById("allTasks"),
   tFBtn: document.getElementById("addTask"),
   tLBtn: document.getElementById("taskList"),
-  taskBox: document.getElementById('showtask')
+  taskBox: document.getElementById('showtask'),
+  filterVar: document.getElementById("filter")
 }
 
 // Task Array
@@ -39,7 +41,6 @@ function clickHandler(event) {
     els.tasklist.style.display = "block";
     els.tFBtn.classList.remove("active");
     els.tLBtn.classList.add("active");
-
     els.taskBox.innerHTML = "";
     for (let i = 0; i < toDo.length; i++) {
       els.taskBox.append(taskAdd(toDo[i]));
@@ -48,24 +49,31 @@ function clickHandler(event) {
   } else if (event.target.id == "listAdd") {
     // add task to toDo list
     arraytoDo();
+    // wipe form
     document.getElementById("taskTitle").value = "";
-    document.getElementById("difficulty").value = ""
+    document.getElementById("difficulty").value = "";
     document.getElementById('taskStuff').value = "";
 
-    // filtering tasks (use for loop to check divs in toDoBoxes array, use if statement to see if checkbox is checked?)
-  } else if (event.target.value == "All") {
-
-  } else if (event.target.value == "Finished") {
+    // filtering tasks 
+  } else if (els.filterVar.value == "All") {
+    els.taskBox.innerHTML = "";
     for (let i = 0; i < toDo.length; i++) {
-      if (toDo[i].checked == true) {
-      } else {
+      els.taskBox.append(taskAdd(toDo[i]));
+    }
+
+  } else if (els.filterVar.value == "Ongoing") {
+    els.taskBox.innerHTML = "";
+    for (let i = 0; i < toDo.length; i++) {
+      if (toDo[i].checked == false) {
+        els.taskBox.append(taskAdd(toDo[i]));
       }
     }
 
-  } else if (event.target.value == "Ongoing") {
+  } else if (els.filterVar.value == "Finished") {
+    els.taskBox.innerHTML = "";
     for (let i = 0; i < toDo.length; i++) {
-      if (toDo[i].checked == false){
-      } else {
+      if (toDo[i].checked == true) {
+        els.taskBox.append(taskAdd(toDo[i]))
       }
     }
   }
@@ -98,11 +106,7 @@ function taskAdd(doStuff) {
 
   ATT.check.type = "checkbox";
   ATT.check.checked = (doStuff.checked);
-  ATT.check.addEventListener("click", () => {
-    console.log(doStuff.checked);
-    doStuff.checked = !doStuff.checked;
-    console.log(doStuff.checked);
-  });
+  ATT.check.addEventListener("click", () => doStuff.checked = !doStuff.checked);
 
   ATT.divEl.append(ATT.check);
 
